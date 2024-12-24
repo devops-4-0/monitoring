@@ -24,7 +24,7 @@ cpu_check(){
 	fi
 
 	if [[ $cpu_load_percentage -lt $CPU_LIMIT && $cpu_in_alarm -eq 1 ]]; then
-		message="✅️️✅️️ Resolved ✅️️✅️️ %0A0AHostname: ${HOSTNAME} %0A%0ACPU is in relax: ${cpu_load_percentage}%"
+		message="✅️️✅️️ Resolved ✅️️✅️️ %0A%0AHostname: ${HOSTNAME} %0A%0ACPU is in relax: ${cpu_load_percentage}%"
         	curl -s -X POST https://api.telegram.org/bot${BOT_TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d text="${message}" > /dev/null 2>&1
         	cpu_in_alarm=0
 	fi
