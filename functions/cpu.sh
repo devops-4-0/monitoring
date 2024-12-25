@@ -12,7 +12,7 @@ cpu_check(){
 
 	if [[ $cpu_load_percentage -ge $CPU_LIMIT && $cpu_in_alarm -eq 0 ]]; then
 		if [[ $LOGGING_LEVEL == error ]]; then
-			echo "$datetime | CPU load: $cpu_load_percentage" >> /root/monitoring/cpu.log
+			echo "$datetime | CPU load: $cpu_load_percentage" >> ${script_folder}/cpu.log
 		fi
 		cpu_peak_count=$(($cpu_peak_count+1))
 		if [[ $cpu_peak_count -ge $LIMIT_PEAK_COUNT ]]; then
@@ -29,7 +29,7 @@ cpu_check(){
         	cpu_in_alarm=0
 	fi
 	if [[ $LOGGING_LEVEL == debug ]]; then
-		echo "$datetime | CPU load: $cpu_load_percentage" >> /root/monitoring/cpu.log
+		echo "$datetime | CPU load: $cpu_load_percentage" >> ${script_folder}/cpu.log
 	fi
 
 }

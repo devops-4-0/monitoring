@@ -1,25 +1,20 @@
 #!/bin/bash
 
-HOSTNAME=devops_server
-BOT_TOKEN=7946212281:AAGz26rlk5mAH2G3IXtkrat_BDiPRywydGI
-CHAT_ID=-4741043043
-INTERVAL=5
-CPU_LIMIT=30
-LOGGING_LEVEL=error
-LIMIT_PEAK_COUNT=3
+script_folder=$(dirname $(readlink -f "$0"))
 
-source functions/cpu.sh
+source ${script_folder}/functions/cpu.sh
+source ${script_folder}/monitoring.conf
 
 init(){
-	if [[ ! -d states ]]; then
-		mkdir states
+	if [[ ! -d ${script_folder}/states ]]; then
+		mkdir ${script_folder}/states
 	fi
-	touch states/running
+	touch ${script_folder}/states/running
 }
 
 init
 
-while [[ -f states/running ]]; do
+while [[ -f ${script_folder}/states/running ]]; do
 	cpu_check
 	sleep $INTERVAL
 done
