@@ -3,6 +3,7 @@
 script_folder=$(dirname $(readlink -f "$0"))
 
 source ${script_folder}/functions/cpu.sh
+source ${script_folder}/functions/storage.sh
 source ${script_folder}/monitoring.conf
 
 init(){
@@ -16,6 +17,7 @@ init
 
 while [[ -f ${script_folder}/states/running ]]; do
 	cpu_check
+	storage_check
 	sleep $INTERVAL
 done
 
